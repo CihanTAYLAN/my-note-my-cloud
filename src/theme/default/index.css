@@ -1,80 +1,411 @@
 :root {
-	--color-dark: #250035;
-	--color-medium-dark: #3d0057;
-	--color-medium: #5a007f;
-	--color-medium-light: #7f00b7;
-	--color-light: #a64dff;
-	--color-white: #ffffff;
+    --color-bg-dark: #0f172a;
+    --color-bg-sidebar: #1e293b;
+    --color-bg-editor: #1e293b;
+    --color-primary: #3b82f6;
+    --color-primary-dark: #2563eb;
+    --color-primary-light: #60a5fa;
+    --color-text: #f1f5f9;
+    --color-text-secondary: #94a3b8;
+    --color-border: #334155;
+    --color-hover: rgba(59, 130, 246, 0.1);
+    --color-active: rgba(59, 130, 246, 0.15);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --gradient-sidebar: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    color-scheme: dark light;
+}
+
+:root.light {
+    --color-bg-dark: #ffffff;
+    --color-bg-sidebar: #f8fafc;
+    --color-bg-editor: #ffffff;
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-light: #3b82f6;
+    --color-text: #1e293b;
+    --color-text-secondary: #64748b;
+    --color-border: #e2e8f0;
+    --color-hover: rgba(37, 99, 235, 0.1);
+    --color-active: rgba(37, 99, 235, 0.15);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --gradient-sidebar: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+:root.dark {
+    --color-bg-dark: #0f172a;
+    --color-bg-sidebar: #1e293b;
+    --color-bg-editor: #0f172a;
+    --color-primary: #3b82f6;
+    --color-primary-dark: #2563eb;
+    --color-primary-light: #60a5fa;
+    --color-text: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-border: #334155;
+    --color-hover: rgba(59, 130, 246, 0.1);
+    --color-active: rgba(59, 130, 246, 0.15);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --gradient-sidebar: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
 }
 
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    background-color: var(--color-bg-dark);
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .sidebar {
-	height: 100vh;
-	padding: 0;
-	margin: 0;
-	border-right: 1px solid var(--color-medium-dark);
+    width: 240px;
+    min-width: 240px;
+    height: 100vh;
+    background: var(--gradient-sidebar);
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
 
-	.sidebar-heading {
-		background-color: var(--color-dark);
-		color: var(--color-white);
-		padding: 0.5rem;
-		display: flex;
-		height: 56px;
+.note-search {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-		img {
-			width: 35px;
-			height: 35px;
-			border-radius: 50%;
-			margin-right: 1rem;
-		}
-	}
+.theme-selector {
+    display: flex;
+    align-items: center;
+}
 
-	.note-search {
-		height: 40px;
-		width: 100%;
-		padding: 0.5rem;
-		padding-top: 10px;
-		display: flex;
-		align-items: center;
-		background-color: var(--color-dark);
+.theme-select {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
 
-		.note-search-input {
-			width: 100%;
-			height: 30px;
-			margin: 0 auto;
-			padding: 0.5rem;
-			border-radius: 6px;
-			border: none;
-			background-color: var(--color-medium-dark);
-			color: var(--color-white);
-			outline: none;
-		}
-	}
+.theme-select:hover {
+    border-color: var(--color-primary);
+}
 
-	.note-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		cursor: pointer;
-		background-color: var(--color-dark);
-		height: calc(100vh - 40px);
-		overflow-y: auto;
+.theme-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-hover);
+}
 
-		.note-list-item {
-			padding: 0.2rem 0.5rem;
-			margin: 0.2rem 0.5rem;
-			border-radius: 6px;
-			cursor: pointer;
-			transition: background-color 0.3s;
-			color: var(--color-white);
+.note-search-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
 
-			&.active {
-				background-color: var(--color-medium-dark);
-				color: var(--color-white);
-			}
-		}
-	}
+.note-search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-hover);
+}
+
+.note-list {
+    list-style: none;
+    padding: 0.5rem;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.note-list-item {
+    padding: 0.5rem 0.75rem;
+    margin: 0.25rem 0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--color-text);
+    font-size: 0.875rem;
+}
+
+.note-list-item:hover {
+    background-color: var(--color-hover);
+}
+
+.note-list-item.active {
+    background-color: var(--color-active);
+}
+
+.note-list-item-title {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.note-list-item-date {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.new-note-button {
+    margin: 0.75rem;
+    padding: 0.5rem;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+}
+
+.new-note-button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.note-editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--color-bg-dark);
+}
+
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-bg-dark);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.toolbar-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.icon-button:hover {
+    background-color: var(--color-hover);
+}
+
+.icon-button svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.title-container {
+    flex: 1;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    background-color: var(--color-bg-dark);
+}
+
+.content-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--color-bg-dark);
+    height: calc(100vh - 4.5rem);
+}
+
+.preview-toggle {
+    padding: 0.5rem 0.75rem;
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.2s;
+}
+
+.preview-toggle:hover {
+    background-color: var(--color-hover);
+}
+
+.preview-toggle.active {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.preview-content {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    background-color: var(--color-bg-dark);
+}
+
+.markdown-preview {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    color: var(--color-text);
+    line-height: 1.6;
+    font-size: 0.875rem;
+}
+
+/* Monaco Editor Theme Customization */
+.monaco-editor .monaco-scrollable-element {
+    box-shadow: none !important;
+}
+
+.monaco-editor .cursors-layer .cursor {
+    transition: all 0.1s !important;
+}
+
+.monaco-editor .suggest-widget {
+    border: 1px solid var(--color-border) !important;
+    border-radius: 0.25rem !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.monaco-editor .suggest-widget .monaco-list .monaco-list-row.focused {
+    background-color: var(--color-hover) !important;
+}
+
+.monaco-editor .margin,
+.monaco-editor-background {
+    background-color: transparent !important;
+}
+
+.monaco-editor .view-overlays .current-line {
+    border: none !important;
+}
+
+.monaco-editor .line-numbers {
+    display: none !important;
+}
+
+/* Markdown Preview Styles */
+.markdown-preview h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+.markdown-preview h2 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--color-text);
+}
+
+.markdown-preview h3 {
+    font-size: 1.25rem;
+    margin: 1.25rem 0 0.75rem;
+    color: var(--color-text);
+}
+
+.markdown-preview p {
+    margin: 0.75rem 0;
+}
+
+.markdown-preview ul,
+.markdown-preview ol {
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+}
+
+.markdown-preview li {
+    margin: 0.375rem 0;
+}
+
+.markdown-preview pre {
+    background-color: var(--color-hover);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.markdown-preview code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    padding: 0.125rem 0.25rem;
+    background-color: var(--color-hover);
+    border-radius: 0.125rem;
+}
+
+.markdown-preview pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.markdown-preview blockquote {
+    border-left: 4px solid var(--color-primary);
+    margin: 1rem 0;
+    padding: 0.5rem 0 0.5rem 1rem;
+    color: var(--color-text-secondary);
+}
+
+.markdown-preview hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 1.5rem 0;
+}
+
+.markdown-preview a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.markdown-preview a:hover {
+    text-decoration: underline;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
 }
