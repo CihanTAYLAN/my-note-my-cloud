@@ -64,23 +64,17 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
 
     return (
         <main className="note-editor">
-            <div className="editor-toolbar">
-                <div className="title-container">
-                    <Editor
-                        height="2.5rem"
-                        defaultLanguage="markdown"
+            <div className="editor-header">
+                <div className="editor-title">
+                    <input
+                        type="text"
                         value={note.title}
-                        onChange={(value) => onTitleChange(value || '')}
-                        theme={editorTheme}
-                        options={{
-                            ...editorOptions,
-                            scrollbar: { vertical: 'hidden', horizontal: 'hidden' },
-                            fontSize: 16,
-                            padding: { top: 8, bottom: 8, right: 8, left: 8 },
-                        }}
+                        onChange={(e) => onTitleChange(e.target.value)}
+                        placeholder="Note title..."
+                        className="title-input"
                     />
                 </div>
-                <div className="toolbar-actions">
+                <div className="editor-actions">
                     <ThemeSelector />
                     <button
                         className="icon-button"
@@ -92,32 +86,34 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
                 </div>
             </div>
 
-            {isPreview ? (
-                <div className="preview-content">
-                    <ReactMarkdown
-                        className="markdown-preview"
-                        remarkPlugins={[remarkGfm]}
-                    >
-                        {note.content}
-                    </ReactMarkdown>
-                </div>
-            ) : (
-                <div className="content-container">
-                    <Editor
-                        height="100%"
-                        defaultLanguage="markdown"
-                        value={note.content}
-                        onChange={(value) => onContentChange(value || '')}
-                        theme={editorTheme}
-                        options={{
-                            ...editorOptions,
-                            fontSize: 14,
-                            padding: { top: 12, bottom: 12, right: 24, left: 24 },
-                            lineHeight: 20,
-                        }}
-                    />
-                </div>
-            )}
+            <div className="editor-content">
+                {isPreview ? (
+                    <div className="preview-content">
+                        <ReactMarkdown
+                            className="markdown-preview"
+                            remarkPlugins={[remarkGfm]}
+                        >
+                            {note.content}
+                        </ReactMarkdown>
+                    </div>
+                ) : (
+                    <div className="content-container">
+                        <Editor
+                            height="100%"
+                            defaultLanguage="markdown"
+                            value={note.content}
+                            onChange={(value) => onContentChange(value || '')}
+                            theme={editorTheme}
+                            options={{
+                                ...editorOptions,
+                                fontSize: 14,
+                                padding: { top: 20, bottom: 20, right: 40, left: 40 },
+                                lineHeight: 20,
+                            }}
+                        />
+                    </div>
+                )}
+            </div>
         </main>
     );
 };

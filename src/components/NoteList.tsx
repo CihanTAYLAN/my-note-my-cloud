@@ -18,7 +18,7 @@ export const NoteList: React.FC<NoteListProps> = ({
     const [filteredNotes, setFilteredNotes] = useState<Note[]>(notes);
 
     useEffect(() => {
-        const filtered = notes.filter(note => 
+        const filtered = notes.filter(note =>
             note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             note.content.toLowerCase().includes(searchQuery.toLowerCase())
         );
