@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -20,7 +20,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             const root = window.document.documentElement;
             const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             const activeTheme = theme === 'system' ? systemTheme : theme;
-            
+
             root.classList.remove('light', 'dark');
             root.classList.add(activeTheme);
         };
@@ -40,7 +40,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }, [theme]);
 
     return (
-        <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ThemeContext.Provider value={useMemo(() => ({ theme, setTheme }), [theme])}>
             {children}
         </ThemeContext.Provider>
     );
