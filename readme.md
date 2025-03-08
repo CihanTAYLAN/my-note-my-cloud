@@ -57,16 +57,33 @@ Please make sure to:
 
 If you find a bug or have a feature request, please open an issue on GitHub using the appropriate template.
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Author
+## 🤝 Contributing
 
-Cihan TAYLAN - [@CihanTAYLAN](https://github.com/CihanTAYLAN)
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## Acknowledgments
+## 💬 Support & Community
 
-- Built with [Electron](https://www.electronjs.org/)
-- Uses [React](https://reactjs.org/) for the UI
-- [CodeMirror](https://codemirror.net/) for the markdown editor
+- 📫 Author: Cihan TAYLAN
+  - Website: [cihantaylan.com](https://cihantaylan.com)
+  - GitHub: [@cihantaylan](https://github.com/cihantaylan)
+  - LinkedIn: [cihantaylan](https://www.linkedin.com/in/cihantaylan/)
+
+### Issue Reporting
+
+Found a bug or have a feature request? Please open an issue on [GitHub](https://github.com/cihanTAYLAN/grpc-boilerplate-realtime/issues) or reach out on [X](https://x.com/cihantaylan24).
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by Cihan TAYLAN</sub>
+  <br>
+  ⭐ Don't forget to star this project if you found it helpful!
+</div>

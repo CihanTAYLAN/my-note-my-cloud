@@ -11,11 +11,34 @@ const config: ForgeConfig = {
 	packagerConfig: {
 		asar: true,
 		overwrite: true,
-		// icon: "src/assets/images/icon",
-		// extraResource: ["./src/assets"],
+		icon: "src/assets/images/icon",
+		extraResource: ["./src/assets"],
+		osxSign: {},
+		protocols: [
+			{
+				name: "my-note-my-cloud",
+				schemes: ["mynote"],
+			},
+		],
 	},
 	rebuildConfig: {},
-	makers: [new MakerSquirrel({}), new MakerZIP({}, ["darwin"]), new MakerRpm({}), new MakerDeb({})],
+	makers: [
+		new MakerSquirrel({
+			iconUrl: "https://raw.githubusercontent.com/yourusername/my-note-my-cloud/main/src/assets/images/icon.ico",
+			setupIcon: "src/assets/images/icon.ico",
+		}),
+		new MakerZIP({}, ["darwin", "linux"]),
+		new MakerRpm({
+			options: {
+				icon: "src/assets/images/icon.png",
+			},
+		}),
+		new MakerDeb({
+			options: {
+				icon: "src/assets/images/icon.png",
+			},
+		}),
+	],
 	plugins: [
 		new VitePlugin({
 			// `build` can specify multiple entry builds, which can be Main process, Preload scripts, Worker process, etc.
